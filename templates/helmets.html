@@ -1,0 +1,72 @@
+<!--Страница выбора шлемов-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Купить игру</title>
+</head>
+
+{% extends 'menu.html' %}
+
+{% block pagename %}
+    <h1>Выбрать игру</h1>
+{% endblock %}
+
+{% block menu %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<style>
+  .bg-blue {background-color:aliceblue;padding:25px;}
+  .pag_centr {text-align: center;}
+</style>
+
+<div class="row">
+    {% for game in page_obj %}
+        <div class="bg-blue">
+            <h2> {{ game.title }} </h2>
+            <p> Описание: {{game.description}} </p>
+            <p> Стоимость: {{game.cost}} рублей. </p>
+            <button> Купить </button>
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+    <nav class="pagination, pag_centr">
+        <ul class="pagination">
+
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <b><a class="page-link" href="#" > _ {{ i }} _  </a></b>
+                {% else %}
+                    <a class="page-link" href="?page={{ i }}">     {{ i }}     </a>
+                {% endif %}
+            {% endfor %}
+
+        </ul>
+    </nav>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="numbers_of_page">Количество игр на странице:</label>
+    <select name="numbers_of_page" id="numbers_of_page" onchange="form.submit()">
+        <option selected="selected" value="{{ numbers_of_page }}"> {{ numbers_of_page }} </option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+</form>
+
+{% endblock %}
+
+{% block register %}
+{{ block.super }}
+{% endblock %}
+
+</html>

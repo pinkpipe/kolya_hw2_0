@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <pagename>
+        {% block pagename %}
+        <h2>Заголовок</h2>
+        {% endblock %}
+    </pagename>
+
+
+    <menu>
+        {% block menu %}
+        <h3><a href="/platform/">Главная</a></h3>
+        <h3><p><a href="/platform/buy">Купить игру</a></p></h3>
+        <h3><p><a href="/platform/basket">Корзина</a></p></h3>
+        {% endblock %}
+    </menu>
+
+    <content>
+        {% block content %}
+        <p>Контент</p>
+        {% endblock %}
+    </content>
+
+    <register>
+        {% block register %}
+        <p><a href="/sign_up_html"><button>Зарегестрироваться</button></a></p>
+        {% endblock %}
+    </register>
+</body>
+</html>
